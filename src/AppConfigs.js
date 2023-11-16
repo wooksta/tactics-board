@@ -7,10 +7,11 @@ const AppConfigs = {
 		thumbnailWidth: 320,	// height calculated from proportions
 	},
 	coatchingfutsal: {
-		useFirebase: false,
+		useFirebase: true,
 		siteHomeURL: '/',
-		siteLogoURL: '/TacticsBoard/ext/cf_logo.png',
-		pitchCenterADURL: '/TacticsBoard/CenterAdvert',
+		siteLogoURL: null,
+		pitchCenterADURL: null,
+		pitchCenterBackground: '/TacticsBoard/field',
 		signInURL: '/Account/LoginRegister',
 		signOutURL: '/Account/LogOff',
 		getUserURL: '/Account/GetUser',

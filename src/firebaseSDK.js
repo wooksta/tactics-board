@@ -13,13 +13,13 @@ import AppUser from './AppUser';
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-	apiKey: "AIzaSyDAb0oHSQCeihL0Op9agehWqYQh1-7E4xE",
-	authDomain: "tactics-board-1c644.firebaseapp.com",
-	projectId: "tactics-board-1c644",
-	storageBucket: "tactics-board-1c644.appspot.com",
-	messagingSenderId: "704589627362",
-	appId: "1:704589627362:web:b110cc834a5f5c19c543bb",
-	measurementId: "G-PDXB2VPRL8"
+	apiKey: "AIzaSyCxKsuzXpyttm4JQHsyFFy9Qj1zg9m6tKU",
+  authDomain: "tactics-board-gregorian.firebaseapp.com",
+  projectId: "tactics-board-gregorian",
+  storageBucket: "tactics-board-gregorian.appspot.com",
+  messagingSenderId: "778416281868",
+  appId: "1:778416281868:web:fd3c7dfb72cd2c90a41129",
+  measurementId: "G-6TSEMCCY76"
 };
 
 class FirebaseServer {
