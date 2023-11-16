@@ -117,7 +117,7 @@ class DrawerMenu extends Component {
 						<ListItem>
 							<ListItemButton onClick={this.load} disabled={!this.props.isSignedIn}>
 								<ListItemIcon><CloudDownloadIcon /></ListItemIcon>
-								<ListItemText primary="Browse my animations" />
+								<ListItemText primary="Load" />
 							</ListItemButton>
 						</ListItem>
 						<ListItem>

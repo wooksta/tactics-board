@@ -15,12 +15,30 @@ import AppUser from './AppUser';
 const firebaseConfig = {
 	apiKey: "AIzaSyCxKsuzXpyttm4JQHsyFFy9Qj1zg9m6tKU",
   authDomain: "tactics-board-gregorian.firebaseapp.com",
+  databaseURL: "https://tactics-board-gregorian-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "tactics-board-gregorian",
   storageBucket: "tactics-board-gregorian.appspot.com",
   messagingSenderId: "778416281868",
   appId: "1:778416281868:web:fd3c7dfb72cd2c90a41129",
   measurementId: "G-6TSEMCCY76"
 };
+
+const downloadFile = ({ data, fileName, fileType }) => {
+  // Create a blob with the data we want to download as a file
+  const blob = new Blob([data], { type: fileType })
+  // Create an anchor element and dispatch a click event on it
+  // to trigger a download
+  const a = document.createElement('a')
+  a.download = fileName
+  a.href = window.URL.createObjectURL(blob)
+  const clickEvt = new MouseEvent('click', {
+    view: window,
+    bubbles: true,
+    cancelable: true,
+  })
+  a.dispatchEvent(clickEvt)
+  a.remove()
+}
 
 class FirebaseServer {
 	constructor(siteHomeURL = null, signedInCallback = null) {
@@ -145,17 +163,19 @@ class FirebaseServer {
 	}
 
 	async Save(tactics, thumbnailBlob) {
-		const user = this.firebaseApp.auth().currentUser;
+		
+		const user = this.firebaseApp.auth().currentUser;/*
 		if (!user) {
 			console.error("User is not signed in");
 			return
-		}
+		}*/
 		//console.log(user);
 	
 		console.log("Firebase save", tactics.name, tactics.description);
 		//console.log(tactics);
 	
 		// first create/update user collection
+		/*
 		const tacticsCollection = "user-tactics";
 		try {
 			const userCollection = { name: user.displayName };
@@ -170,7 +190,7 @@ class FirebaseServer {
 	
 		// user tactics root path for documents and thumbs
 		const userTacticsRoot = tacticsCollection + "/" + user.uid;
-	
+		console.log("Firebase save - 2");
 		// 2nd store thumbnail
 		try {
 			const userTacticsThumbs = userTacticsRoot + "/tactics-thumbs/" + tactics.id + ".png";
@@ -194,17 +214,54 @@ class FirebaseServer {
 		} catch (error) {
 			console.error("Saving user tactics", error);
 		}
+		*/
+		try {
+			//const tacticsCollection = "user-tactics";
+			//const userCollection = { name: user.displayName };
+			//const userTacticsRoot = tacticsCollection + "/" + user.uid;
+			//const userTacticsThumbs = userTacticsRoot + "/tactics-thumbs/" + tactics.id + ".png";
+			//const thumbRef = refFile(this.storage, userTacticsThumbs);
+			
+			// convert dates to firestore timestamps
+			tactics.created = Timestamp.fromDate(tactics.created);
+			tactics.updated = Timestamp.fromDate(tactics.updated);
+			// save
+			//const userTacticsCollection = userTacticsRoot + "/tactics";
+			/*await setDoc(
+				doc(this.firestore, userTacticsCollection, tactics.id), 
+				tactics
+			);*/
+			/*console.log(userTacticsCollection);
+			console.log(tactics);
+			console.log(JSON.stringify(tactics));*/
+			const data = JSON.stringify(tactics);
+			const fileType = 'text/json';
+			const fileName = 'export.json';
+			downloadFile({
+				data: JSON.stringify(tactics),
+				fileName: 'output.json',
+				fileType: 'text/json',
+			})
+			} catch (error) {
+			console.error("Saving user tactics", error);
+		}
 	}
 
+	async downloadFile( data, fileName, fileType ) 
+	{
+	  
+	}
+	
 	async Load(tacticsID) {
-		const user = this.firebaseApp.auth().currentUser;
-		if (!user) {
+		//const user = this.firebaseApp.auth().currentUser;
+		/*if (!user) {
 			console.error("User is not signed in");
 			return
 		}
 		//console.log(user);
-	
-		try {
+	*/
+		return JSON.parse(tacticsID);
+		/*try {
 			console.log("Loading user tactics", tacticsID);
 			const userTacticsPath = "user-tactics/" + user.uid + "/tactics/" + tacticsID;
 			const tacticsRef = doc(this.firestore, userTacticsPath);
@@ -231,7 +288,7 @@ class FirebaseServer {
 		} catch (error) {
 			console.error("Loading user tactics", error);
 			return null;
-		}
+		}*/
 	}
 
 	async LoadShared(tacticsID) {

@@ -33,10 +33,12 @@ class BrowseDialog extends Component {
 		super(props, context);
 		this.Show = this.Show.bind(this);
 		this.handleClose = this.handleClose.bind(this);
-		this.handleDateFromChange = this.handleDateFromChange.bind(this);
+		/*this.handleDateFromChange = this.handleDateFromChange.bind(this);
 		this.handleDateToChange = this.handleDateToChange.bind(this);
 		this.handleTextChange = this.handleTextChange.bind(this);
-		this.handleSearch = this.handleSearch.bind(this);
+		this.handleSearch = this.handleSearch.bind(this);*/
+		this.handleJsonChange = this.handleJsonChange.bind(this);
+		this.loadTactic = this.loadTactic.bind(this);
 		this.loadTactics = this.loadTactics.bind(this);
 		this.nextPage = this.nextPage.bind(this);
 		this.menuOpen = this.menuOpen.bind(this);
@@ -51,7 +53,8 @@ class BrowseDialog extends Component {
 			menuTacticsID: null,
 			searchDateFrom: null,
 			searchDateTo: null,
-			searchText: null
+			searchText: null,
+			json: null
 		}
 	}
 
@@ -67,7 +70,8 @@ class BrowseDialog extends Component {
 			menuTacticsID: null,
 			searchDateFrom: null,
 			searchDateTo: null,
-			searchText: null
+			searchText: null,
+			json: null
 		});
 		this.List();
 	}
@@ -90,6 +94,10 @@ class BrowseDialog extends Component {
 
 	handleSearch(e) {
 		this.List();
+	}
+	
+	handleJsonChange(e) {
+		this.setState({json: e.target.value});
 	}
 
 	async List(){
@@ -139,6 +147,19 @@ class BrowseDialog extends Component {
 		});
 	}
 
+	loadTactic(e) {
+		//console.log("TEST");
+		var input = this.refs.myInput;
+		var json = input.value;
+		//var json = jsonTextField.value;
+		var json = this.state.json;
+		//console.log(json);
+		if (json) {
+			this.handleClose();
+			this.props.onLoad(json);
+		}
+	}
+	
 	loadTactics(e) {
 		// read from "data-value" attribute
 		const id = e.currentTarget.dataset.value;
@@ -255,9 +276,16 @@ class BrowseDialog extends Component {
 	render() {
 		return (
 			<Dialog fullWidth={true} maxWidth="lg" open={this.state.open} onClose={this.handleClose} aria-labelledby="responsive-dialog-title">
-				<DialogTitleClose id="responsive-dialog-title" onClick={this.handleClose}>Browse my tactics - click on tactic to open in editor</DialogTitleClose>
+				<DialogTitleClose id="responsive-dialog-title" onClick={this.handleClose}>Browse my tactics - upload tactic to open in editor</DialogTitleClose>
 				<DialogContent dividers>
-					<Stack direction="row" justifyContent="center" spacing={3}>
+				<TextField 
+					id="jsonTextField"
+					ref="myInput"
+					label="JSON"
+					margin="dense" multiline rows={4} fullWidth
+					onChange={this.handleJsonChange}
+				/>
+				{/*<Stack direction="row" justifyContent="center" spacing={3}>
 						<LocalizationProvider dateAdapter={AdapterMoment}>
 							<DesktopDatePicker
 								label="From date"
@@ -283,7 +311,7 @@ class BrowseDialog extends Component {
 					</Stack>
 					<Grid container columns={3}>
 						{this.renderItems()}
-					</Grid>
+				</Grid>
 					<Stack direction="row" justifyContent="center">
 						<LoadingButton
 							onClick={this.nextPage}
@@ -292,9 +320,10 @@ class BrowseDialog extends Component {
 							loadingPosition="start"
 							startIcon={<CloudDownloadIcon />}
 							variant="contained">More</LoadingButton>
-					</Stack>
+					</Stack>*/}
 				</DialogContent>
 				<DialogActions>
+					<Button onClick={this.loadTactic} variant="contained" color="primary" autoFocus>Load</Button>
 					<Button onClick={this.handleClose} variant="contained" color="primary" autoFocus>Cancel</Button>
 				</DialogActions>
 				<Menu open={this.state.menuOpen} anchorEl={this.state.menuAnchorEl} onClose={this.menuClose}
