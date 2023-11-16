@@ -2,7 +2,7 @@
   "name": "tactics-board",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://gljubojevic.github.io/tactics-board",
+  "homepage": "https://wooksta.github.io/tactics-board",
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
