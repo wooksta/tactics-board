@@ -8,7 +8,7 @@ const AppConfigs = {
 	},
 	coatchingfutsal: {
 		useFirebase: true,
-		siteHomeURL: '/tactics-board/',
+		siteHomeURL: '/tactics-board',
 		siteLogoURL: null,
 		pitchCenterADURL: null,
 		pitchCenterBackground: '/TacticsBoard/field',
