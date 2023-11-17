@@ -115,23 +115,25 @@ class DrawerMenu extends Component {
 						</ListItem>
 						<Divider />
 						<ListItem>
-							<ListItemButton onClick={this.load} disabled={!this.props.isSignedIn}>
+							<ListItemButton onClick={this.load}>
 								<ListItemIcon><CloudDownloadIcon /></ListItemIcon>
 								<ListItemText primary="Load" />
 							</ListItemButton>
 						</ListItem>
 						<ListItem>
-							<ListItemButton onClick={this.save} disabled={!this.props.isSignedIn}>
+							<ListItemButton onClick={this.save}>
 								<ListItemIcon><Save /></ListItemIcon>
 								<ListItemText primary="Save" />
 							</ListItemButton>
 						</ListItem>
+						{/*
 						<ListItem>
 							<ListItemButton onClick={this.saveAs} disabled={!this.props.isSignedIn}>
 								<ListItemIcon><Save /></ListItemIcon>
 								<ListItemText primary="Save As" />
 							</ListItemButton>
 						</ListItem>
+						*/}
 						<Divider />
 						<ListItem>
 							<ListItemButton onClick={this.saveImage} disabled={!this.props.isSignedIn}>

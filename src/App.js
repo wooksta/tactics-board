@@ -336,10 +336,10 @@ class App extends Component {
 	}
 
 	async TacticsSave(name, description, saveAs) {
-		if (!this.isSignedIn) {
+		/*if (!this.isSignedIn) {
 			console.error("User is not signed in");
 			return
-		}
+		}*/
 
 		// save to local storage to keep it and get data for save
 		if (saveAs) {
@@ -362,27 +362,30 @@ class App extends Component {
 	}
 
 	TacticsBrowse() {
+		/*
 		if (!this.isSignedIn) {
 			console.error("User is not signed in");
 			return
-		}
+		}*/
 		this.refLoadDialog.current.Show();
 	}
 
 	async TacticsLoad(tacticsID) {
+		/*
 		if (!this.isSignedIn) {
 			console.error("User is not signed in");
 			return
-		}
+		}*/
 		let tactics = await this.server.Load(tacticsID);
 		this.editTactics(tactics, true, false);
 	}
 
 	async TacticsLoadShared(tacticsID) {
+		/*
 		if (!this.isSignedIn) {
 			console.error("User is not signed in");
 			return
-		}
+		}*/
 		let tactics = await this.server.LoadShared(tacticsID); 
 		// change ID so user can save it as own tactics
 		this.editTactics(tactics, true, true);

@@ -67,7 +67,7 @@ class AppTools extends Component {
 					<IconButton edge="start" color="inherit" aria-label="menu" onClick={this.props.toggleDrawer}>
 						<MenuIcon />
 					</IconButton>
-					<Typography variant="h6" color="inherit">Futsal tactics board</Typography>
+					<Typography variant="h6" color="inherit">Rugby tactics board</Typography>
 					{this.renderSiteHome()}
 					{this.renderAnimControls()}
 					<div className={this.props.classes.grow} />

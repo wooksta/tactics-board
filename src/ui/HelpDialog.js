@@ -55,11 +55,11 @@ class HelpDialog extends Component {
 	render() {
 		return (
 			<Dialog open={this.state.open} onClose={this.handleClose} scroll='paper' fullWidth={true} maxWidth="xl">
-				<DialogTitleClose id="help-dialog-title" onClick={this.handleClose}>Futsal tactics board help</DialogTitleClose>
+				<DialogTitleClose id="help-dialog-title" onClick={this.handleClose}>Rugby tactics board help</DialogTitleClose>
 				<DialogContent dividers={true}>
 					<h1>Help</h1>
-					<p>Futsal tactics board is a tool for visualizing practice exercises or game tactics, includes option to make static or animated visualization.</p>
-					<p>Pitch is scaled version of real futsal pitch.</p>
+					<p>Rugby tactics board is a tool for visualizing practice exercises or game tactics, includes option to make static or animated visualization.</p>
+					<p>Pitch is scaled version of real rugby pitch.</p>
 					<p><b>To use saving and loading options you need to be registered user.</b></p>
 					<h2><MenuIcon />Main menu</h2>
 					<p>Located at upper left corner has following options</p>
